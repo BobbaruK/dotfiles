@@ -22,3 +22,5 @@
 	cmd = "code --wait --diff $LOCAL $REMOTE"
 [alias]
 	logo = log --oneline --graph --decorate --all
+[credential]
+	helper = cache
