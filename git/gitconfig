@@ -23,4 +23,4 @@
 [alias]
 	logo = log --oneline --graph --decorate --all
 [credential]
-	helper = cache
+	helper = store
