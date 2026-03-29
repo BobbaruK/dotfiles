@@ -67,6 +67,8 @@ sudo chsh -s "$(which zsh)" "$USER"
 code --install-extension <extension>
 ```
 
+[agnosterzak-ohmyzsh-theme](https://github.com/zakaziko99/agnosterzak-ohmyzsh-theme)
+
 ```bash
 # symlink dotfiles
 ln -s ~/.dotfiles/profile/profile ~/.profile
