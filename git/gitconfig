@@ -1,0 +1,24 @@
+# This is Git's per-user configuration file.
+# [user]
+# Please adapt and uncomment the following lines:
+#	name = BobbaruKrueger
+#	email = bobbarukrueger@BK.(none)
+
+[color]
+	ui = auto
+[push]
+	default = upstream
+# [merge]
+# 	conflictstyle = diff3
+#	tool = p4merge
+[core]
+	editor = code --wait
+[user]
+	email = 33939410+BobbaruK@users.noreply.github.com
+	name = Bobbaru-K
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = "code --wait --diff $LOCAL $REMOTE"
+[alias]
+	logo = log --oneline --graph --decorate --all
