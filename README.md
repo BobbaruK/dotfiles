@@ -55,16 +55,41 @@ nvm install --lts
 sudo chsh -s "$(which zsh)" "$USER"
 ```
 
-```bash
-# vscode
-# https://code.visualstudio.com/docs/setup/linux
-```
+[vscode](https://code.visualstudio.com/docs/setup/linux)
 
 [extensions](./vscode/extensions.txt)
 
 ```bash
 # vscode extensions
 code --install-extension <extension>
+```
+
+[docker](https://docs.docker.com/desktop/setup/install/linux/ubuntu/)
+
+```bash
+sudo apt update
+
+sudo apt install gnome-terminal
+
+# Add Docker's official GPG key:
+sudo apt install ca-certificates
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+
+sudo apt install ./docker-desktop-amd64.deb
 ```
 
 [agnosterzak-ohmyzsh-theme](https://github.com/zakaziko99/agnosterzak-ohmyzsh-theme)
@@ -122,4 +147,42 @@ rm -rf "$HOME/.config/git"
 ```bash
 # Curl
 sudo apt purge -y curl || true
+```
+
+```bash
+  # Docker
+  # Stop Docker Desktop (user-level)
+  systemctl --user stop docker-desktop 2>/dev/null || true
+  systemctl --user disable docker-desktop 2>/dev/null || true
+
+  # Stop Docker Engine (system-level)
+  sudo systemctl stop docker 2>/dev/null || true
+  sudo systemctl stop containerd 2>/dev/null || true
+
+  sudo apt purge -y docker-desktop 2>/dev/null || true
+
+  sudo apt purge -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-buildx-plugin \
+    docker-compose-plugin \
+    docker-ce-rootless-extras 2>/dev/null || true
+
+  sudo apt autoremove -y
+
+  echo -e "\tRemoving Docker data (containers, images, volumes)..."
+
+  sudo rm -rf /var/lib/docker
+  sudo rm -rf /var/lib/containerd
+
+  rm -rf "$HOME/.docker"
+  rm -rf "$HOME/.config/docker-desktop"
+
+  sudo rm -rf /opt/docker-desktop
+
+  sudo rm -f /etc/apt/sources.list.d/docker.sources
+  sudo rm -f /etc/apt/keyrings/docker.asc
+
+  sudo apt update
 ```

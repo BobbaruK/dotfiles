@@ -24,6 +24,55 @@ UNDERLINE="\033[4m"
 
 RESET="\033[0m"
 
+remove_docker() {
+  echo -e "\n\t${COLOR_YELLOW} Purge ${BG_YELLOW} docker (desktop + engine) ${RESET}${COLOR_YELLOW} ... ${RESET}\n"
+
+  # Stop Docker Desktop (user-level)
+  systemctl --user stop docker-desktop 2>/dev/null || true
+  systemctl --user disable docker-desktop 2>/dev/null || true
+
+  # Stop Docker Engine (system-level)
+  sudo systemctl stop docker 2>/dev/null || true
+  sudo systemctl stop containerd 2>/dev/null || true
+
+  echo -e "\tRemoving Docker Desktop package..."
+  sudo apt purge -y docker-desktop 2>/dev/null || true
+
+  echo -e "\tRemoving Docker Engine packages..."
+  sudo apt purge -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-buildx-plugin \
+    docker-compose-plugin \
+    docker-ce-rootless-extras 2>/dev/null || true
+
+  sudo apt autoremove -y
+
+  echo -e "\tRemoving Docker data (containers, images, volumes)..."
+
+  sudo rm -rf /var/lib/docker
+  sudo rm -rf /var/lib/containerd
+
+  echo -e "\tRemoving user configs..."
+
+  rm -rf "$HOME/.docker"
+  rm -rf "$HOME/.config/docker-desktop"
+
+  echo -e "\tRemoving Docker Desktop system files..."
+
+  sudo rm -rf /opt/docker-desktop
+
+  echo -e "\tRemoving Docker repository and key..."
+
+  sudo rm -f /etc/apt/sources.list.d/docker.sources
+  sudo rm -f /etc/apt/keyrings/docker.asc
+
+  sudo apt update
+
+  echo -e "\n\t${BG_GREEN} Docker fully removed ${RESET}\n"
+}
+
 echo -e "\n"
 
 echo -e "${BG_MAGENTA} Full dev environment cleanup... ${RESET}"
@@ -89,6 +138,13 @@ echo -e "\n"
 sudo apt purge -y curl || true
 
 echo -e "\n"
+
+echo -e "	${COLOR_YELLOW} Purge and remove ${BG_YELLOW} docker ${RESET}${COLOR_YELLOW} ... ${RESET}"
+
+echo -e "\n"
+
+# Docker
+remove_docker
 
 echo -e "$BG_GREEN Cleanup done. Re-login recommended. $RESET"
 

@@ -175,9 +175,61 @@ install_vscode_extensions() {
   done < "$file"
 }
 
+install_docker_desktop() {
+  if command -v docker >/dev/null 2>&1; then
+    echo -e "\n\t${BG_GREEN} docker ${RESET} ${COLOR_GREEN}already installed${RESET}\n"
+    return
+  fi
+
+  echo -e "\n\t${BG_RED} docker ${RESET} ${COLOR_RED}not found. Installing...${RESET}\n"
+
+  sudo apt update
+  sudo apt install -y ca-certificates curl gnome-terminal
+
+  # Keyring
+  sudo install -m 0755 -d /etc/apt/keyrings
+
+  if [ ! -f /etc/apt/keyrings/docker.asc ]; then
+    echo -e "\tAdding Docker GPG key..."
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+      -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+  fi
+
+  # Repo
+  echo -e "\tAdding Docker repository..."
+
+  echo \
+"Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc" \
+  | sudo tee /etc/apt/sources.list.d/docker.sources > /dev/null
+
+  sudo apt update
+
+  # Download Docker Desktop .deb
+  TMP_DEB="/tmp/docker-desktop.deb"
+
+  echo -e "\tDownloading Docker Desktop..."
+
+  curl -L "https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb" \
+    -o "$TMP_DEB"
+
+  echo -e "\tInstalling Docker Desktop..."
+
+  sudo apt install -y "$TMP_DEB"
+
+  rm -f "$TMP_DEB"
+
+  echo -e "\n\t${BG_GREEN} Docker Desktop ${RESET} ${COLOR_GREEN}installed${RESET}\n"
+}
+
 echo -e "\n"
 
-echo -e "🔧 ${BG_MAGENTA} Checking dependencies... ${RESET}"
+echo -e "${BG_MAGENTA} Checking dependencies... ${RESET}"
 
 echo -e "\n"
 
@@ -195,7 +247,7 @@ install_node
 set_default_shell
 install_vscode
 install_vscode_extensions
-# TODO: install docker
+install_docker_desktop
 # TODO: install brave
 
 echo -e "\n"
