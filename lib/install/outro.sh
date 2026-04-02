@@ -1,18 +1,30 @@
+
 outro() {
-  echo -e "\n"
+  PS3="Bravo boss! Ai $1 tot. Acum tre' sa alegi ce vrei sa faci cu viata ta: "
 
-  echo -e "${BG_GREEN} Finished! $RESET"
+  select opt in "Logout" "Quit"; do
+    case $opt in
+      "Logout")
+        pkill -KILL -u "$USER"
+        break
+        ;;
 
-  echo -e "\n"
+      "Quit")
+        echo -e "\n$BG_GREEN Fucking quitter! $RESET\n"
+        break
+        ;;
 
-  echo -e "Press ${BG_GREEN} Ctrl+C $RESET to ${UNDERLINE}abort${RESET}."
-
-  for i in {10..0}; do
-  echo -ne "\r${BG_RED} Executing pkill, killing all user processes $RESET ... $BG_RED $i $RESET"
-    sleep 1
+      *)
+        echo "Opțiune invalidă"
+        ;;
+    esac
   done
+}
 
-  echo -e "\n"
+outro_install() {
+  outro "instalat"
+}
 
-  pkill -KILL -u "$USER"
+outro_uninstall() {
+  outro "dezinstalat"
 }

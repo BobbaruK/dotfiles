@@ -27,18 +27,41 @@ install_vs_code_and_extensions() {
   install_vscode_extensions
 }
 
+close_vscode() {
+  if pgrep -f "code" >/dev/null 2>&1; then
+    echo -e "\t${COLOR_GREEN}Closing $RESET$BG_GREEN  VS Code $RESET$COLOR_GREEN...$RESET"
+
+    pkill -15 -f "code"
+    sleep 2
+
+    if pgrep -f "code" >/dev/null 2>&1; then
+      echo -e "\t${COLOR_GREEN}Force killing $RESET$BG_GREEN VS Code $RESET$COLOR_GREEN...$RESET"
+      pkill -9 -f "code"
+    fi
+  else
+    echo -e "\tVS Code not running"
+  fi
+}
+
 uninstall_vscode() {
-  echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED vscode $RESET \n"
+close_vscode
+  if command -v docker >/dev/null 2>&1; then
 
-  sudo apt purge -y code || true
-  sudo rm -f /etc/apt/sources.list.d/vscode.list
-  sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
-  sudo apt update
-  rm -rf "$HOME/.config/Code"
-  rm -rf "$HOME/.vscode"
-  sudo snap remove code
-  rm -rf "$HOME/snap/code"
+    echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED vscode $RESET \n"
 
-  echo -e "\n	$BG_GREEN vscode $RESET$COLOR_GREEN removed$RESET\n"
+    sudo apt purge -y code || true
+    sudo rm -f /etc/apt/sources.list.d/vscode.list
+    sudo rm -f /etc/apt/keyrings/packages.microsoft.gpg
+    sudo apt update
+    rm -rf "$HOME/.config/Code"
+    rm -rf "$HOME/.vscode"
+    sudo snap remove code
+    rm -rf "$HOME/snap/code"
+
+    echo -e "\n	$BG_GREEN vscode $RESET$COLOR_GREEN removed$RESET\n"
+
+  else
+    echo -e "\n	$BG_GREEN docker $RESET ${COLOR_GREEN}missing.$RESET\n"
+  fi
 }
 

@@ -15,13 +15,19 @@ install_zsh() {
 }
 
 uninstall_zsh() {
-  echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED zsh $RESET \n"
+  if command -v zsh >/dev/null 2>&1; then
 
-  sudo chsh -s /bin/bash "$USER" || true
-  sudo apt purge -y zsh
-  rm -f "$HOME/.zshrc"
-  rm -f "$HOME/.shell.pre-oh-my-zsh"
-  rm -f "$HOME/.zsh_history"
-  
-  echo -e "\n	$BG_GREEN zsh $RESET$COLOR_GREEN removed$RESET\n"
+    echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED zsh $RESET \n"
+
+    sudo chsh -s /bin/bash "$USER" || true
+    sudo apt purge -y zsh
+    rm -f "$HOME/.zshrc"
+    rm -f "$HOME/.shell.pre-oh-my-zsh"
+    rm -f "$HOME/.zsh_history"
+    
+    echo -e "\n	$BG_GREEN zsh $RESET$COLOR_GREEN removed$RESET\n"
+
+  else
+    echo -e "\n	$BG_GREEN zsh $RESET ${COLOR_GREEN}missing.$RESET\n"
+  fi
 }

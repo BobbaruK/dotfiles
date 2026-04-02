@@ -12,9 +12,15 @@ install_curl() {
 }
 
 uninstall_curl() {
-  echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED curl $RESET \n"
+  if command -v curl >/dev/null 2>&1; then
 
-  sudo apt purge -y curl || true
-  
-  echo -e "\n	$BG_GREEN curl $RESET$COLOR_GREEN removed$RESET\n"
+    echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED curl $RESET \n"
+
+    sudo apt purge -y curl || true
+    
+    echo -e "\n	$BG_GREEN curl $RESET$COLOR_GREEN removed$RESET\n"
+
+  else
+    echo -e "\n	$BG_GREEN curl $RESET ${COLOR_GREEN}missing.$RESET\n"
+  fi
 }

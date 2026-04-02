@@ -11,12 +11,18 @@ install_git() {
 }
 
 uninstall_git() {
-  echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED git $RESET \n"
+  if command -v git >/dev/null 2>&1; then
 
-  sudo apt purge -y git
-  sudo apt autoremove -y
-  rm -f "$HOME/.gitconfig"
-  rm -rf "$HOME/.config/git"
+    echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED git $RESET \n"
+
+    sudo apt purge -y git
+    sudo apt autoremove -y
+    rm -f "$HOME/.gitconfig"
+    rm -rf "$HOME/.config/git"
   
-  echo -e "\n	$BG_GREEN git $RESET$COLOR_GREEN removed$RESET\n"
+    echo -e "\n	$BG_GREEN git $RESET$COLOR_GREEN removed$RESET\n"
+
+  else
+    echo -e "\n	$BG_GREEN git $RESET ${COLOR_GREEN}missing.$RESET\n"
+  fi
 }

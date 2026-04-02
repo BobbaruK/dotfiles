@@ -50,51 +50,56 @@ Signed-By: /etc/apt/keyrings/docker.asc" \
   echo -e "\n\t${BG_GREEN} Docker Desktop ${RESET} ${COLOR_GREEN}installed${RESET}\n"
 }
 
-uninstall_docker() {
-  echo -e "\n\t${COLOR_YELLOW} Purge ${BG_YELLOW} docker (desktop + engine) ${RESET}${COLOR_YELLOW} ... ${RESET}\n"
+uninstall_docker() {  
+  if command -v docker >/dev/null 2>&1; then
+    echo -e "\n\t${COLOR_GREEN} Purge ${BG_GREEN} docker (desktop + engine) ${RESET}${COLOR_GREEN} ... ${RESET}\n"
 
-  # Stop Docker Desktop (user-level)
-  systemctl --user stop docker-desktop 2>/dev/null || true
-  systemctl --user disable docker-desktop 2>/dev/null || true
+    # Stop Docker Desktop (user-level)
+    systemctl --user stop docker-desktop 2>/dev/null || true
+    systemctl --user disable docker-desktop 2>/dev/null || true
 
-  # Stop Docker Engine (system-level)
-  sudo systemctl stop docker 2>/dev/null || true
-  sudo systemctl stop containerd 2>/dev/null || true
+    # Stop Docker Engine (system-level)
+    sudo systemctl stop docker 2>/dev/null || true
+    sudo systemctl stop containerd 2>/dev/null || true
 
-  echo -e "\tRemoving Docker Desktop package..."
-  sudo apt purge -y docker-desktop 2>/dev/null || true
+    echo -e "\tRemoving Docker Desktop package..."
+    sudo apt purge -y docker-desktop 2>/dev/null || true
 
-  echo -e "\tRemoving Docker Engine packages..."
-  sudo apt purge -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin \
-    docker-ce-rootless-extras 2>/dev/null || true
+    echo -e "\tRemoving Docker Engine packages..."
+    sudo apt purge -y \
+      docker-ce \
+      docker-ce-cli \
+      containerd.io \
+      docker-buildx-plugin \
+      docker-compose-plugin \
+      docker-ce-rootless-extras 2>/dev/null || true
 
-  sudo apt autoremove -y
+    sudo apt autoremove -y
 
-  echo -e "\tRemoving Docker data (containers, images, volumes)..."
+    echo -e "\tRemoving Docker data (containers, images, volumes)..."
 
-  sudo rm -rf /var/lib/docker
-  sudo rm -rf /var/lib/containerd
+    sudo rm -rf /var/lib/docker
+    sudo rm -rf /var/lib/containerd
 
-  echo -e "\tRemoving user configs..."
+    echo -e "\tRemoving user configs..."
 
-  rm -rf "$HOME/.docker"
-  rm -rf "$HOME/.config/docker-desktop"
+    rm -rf "$HOME/.docker"
+    rm -rf "$HOME/.config/docker-desktop"
 
-  echo -e "\tRemoving Docker Desktop system files..."
+    echo -e "\tRemoving Docker Desktop system files..."
 
-  sudo rm -rf /opt/docker-desktop
+    sudo rm -rf /opt/docker-desktop
 
-  echo -e "\tRemoving Docker repository and key..."
+    echo -e "\tRemoving Docker repository and key..."
 
-  sudo rm -f /etc/apt/sources.list.d/docker.sources
-  sudo rm -f /etc/apt/keyrings/docker.asc
+    sudo rm -f /etc/apt/sources.list.d/docker.sources
+    sudo rm -f /etc/apt/keyrings/docker.asc
 
-  sudo apt update
+    sudo apt update
 
-  echo -e "\n\t${BG_GREEN} Docker fully removed ${RESET}\n"
+    echo -e "\n\t${BG_GREEN} Docker fully removed ${RESET}\n"
+
+  else
+    echo -e "\n	$BG_GREEN docker $RESET ${COLOR_GREEN}missing.$RESET\n"
+  fi
 }
