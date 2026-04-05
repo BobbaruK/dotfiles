@@ -26,6 +26,7 @@ select opt in "Install" "Uninstall" "O lume mai buna"; do
       install_nvm_and_node
       install_docker_desktop
       install_vs_code_and_extensions
+      install_libreoffice
       
       mkdir -p "$BACKUP_DIR"
       symlink_dotfiles
@@ -42,6 +43,8 @@ select opt in "Install" "Uninstall" "O lume mai buna"; do
       uninstall_nvm_and_node
       uninstall_docker
       uninstall_vscode
+      uninstall_libreoffice
+      
       outro_uninstall
       break
       ;;
