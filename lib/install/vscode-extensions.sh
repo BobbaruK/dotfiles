@@ -22,7 +22,7 @@ install_vscode_extensions() {
     if echo "$installed" | grep -q "^$ext$"; then
       echo -e "		$BOLD$ext$RESET already installed \n"
     else
-      echo -e "		Installing $BOLD$ext$RESET \n"
+      echo -e "\n\n	Installing $BOLD$ext$RESET \n"
       code --install-extension "$ext"
     fi
   done < "$file"

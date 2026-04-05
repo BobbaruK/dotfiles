@@ -44,8 +44,9 @@ close_vscode() {
 }
 
 uninstall_vscode() {
-close_vscode
-  if command -v docker >/dev/null 2>&1; then
+  close_vscode
+
+  if command -v code >/dev/null 2>&1; then
 
     echo -e "\n	${COLOR_RED}Purging $RESET$BG_RED vscode $RESET \n"
 
