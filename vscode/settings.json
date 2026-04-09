@@ -12,7 +12,7 @@
     "localBranches",
     "stashes",
     "remoteBranches",
-    "tags",
+    "tags"
   ],
   "gitlens.views.commitDetails.files.layout": "tree",
   "prettier.arrowParens": "always",
@@ -29,8 +29,8 @@
   "workbench.sideBar.location": "right",
   "window.title": "${activeFolderMedium}${separator}${dirty}",
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.defaultFormatter": "Prisma.prisma"
   },
   "window.autoDetectColorScheme": true,
-  "workbench.preferredDarkColorTheme": "Bluloco Dark",
+  "workbench.preferredDarkColorTheme": "Bluloco Dark"
 }

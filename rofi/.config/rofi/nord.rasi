@@ -1,0 +1,73 @@
+/* ~/.config/rofi/config.rasi */
+
+configuration {
+    modi: "drun,run,window,ssh";
+    font: "JetBrains Mono 11";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    terminal: "alacritty";
+    drun-display-format: "{name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    sidebar-mode: false;
+}
+
+@theme "nord"
+
+/* Custom theme overrides */
+* {
+    background-color: #2E3440;
+    text-color: #ECEFF4;
+    border-color: #4C566A;
+}
+
+window {
+    width: 50%;
+    border: 2px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+mainbox {
+    spacing: 10px;
+}
+
+inputbar {
+    background-color: #3B4252;
+    border-radius: 5px;
+    padding: 10px;
+    children: [prompt, entry];
+}
+
+prompt {
+    text-color: #88C0D0;
+    padding: 0 10px 0 0;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: #4C566A;
+}
+
+listview {
+    lines: 10;
+    columns: 1;
+    fixed-height: true;
+    spacing: 5px;
+}
+
+element {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+element selected {
+    background-color: #88C0D0;
+    text-color: #2E3440;
+}
+
+element-icon {
+    size: 24px;
+    padding: 0 10px 0 0;
+}

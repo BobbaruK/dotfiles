@@ -25,5 +25,5 @@ link_file() {
 
   ln -s "$src" "$dest"
 
-  echo -e "	${BG_GREEN} Symlink done. $RESET\n"
+  echo -e "	  ${BG_GREEN} Symlink done. $RESET\n"
 }
