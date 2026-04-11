@@ -2,7 +2,7 @@
 
 install_curl() {
   if ! command -v curl >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED curl $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED $pkg $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED curl $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED $pkg $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y curl
     

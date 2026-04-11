@@ -2,7 +2,7 @@
 
 install_zsh() {
   if ! command -v zsh >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED zsh $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED $pkg $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED zsh $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED $pkg $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y zsh
 
@@ -37,7 +37,7 @@ uninstall_zsh() {
 
 install_oh_my_zsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo -e "\n	$BG_RED oh-my-zsh $RESET ${COLOR_RED}not found. Installing...$RESET\n"
+    echo -e "\n	$BG_RED oh-my-zsh $RESET ${COLOR_RED}not found. Installing...$RESET \n"
 
     RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
       sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

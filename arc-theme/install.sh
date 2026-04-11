@@ -2,7 +2,7 @@
 
 install_arc_theme() {
   if ! command -v arc-theme >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED arc-theme $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED arc-theme $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED arc-theme $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED arc-theme $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y arc-theme
     

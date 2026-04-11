@@ -2,7 +2,7 @@
 
 install_vscode() {
   if ! command -v code >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED vscode $RESET ${COLOR_RED}not found. Installing...$RESET\n"
+    echo -e "\n	$BG_RED vscode $RESET ${COLOR_RED}not found. Installing...$RESET \n"
 
     sudo apt install -y software-properties-common apt-transport-https wget gpg
 
@@ -64,13 +64,13 @@ install_vs_code_and_extensions() {
 
 close_vscode() {
   if pgrep -f "code" >/dev/null 2>&1; then
-    echo -e "\t${COLOR_GREEN}Closing $RESET$BG_GREEN  VS Code $RESET$COLOR_GREEN...$RESET"
+    echo -e "\t${COLOR_GREEN}Closing $RESET$BG_GREEN  VS Code $RESET$COLOR_GREEN...$RESET "
 
     pkill -15 -f "code"
     sleep 2
 
     if pgrep -f "code" >/dev/null 2>&1; then
-      echo -e "\t${COLOR_GREEN}Force killing $RESET$BG_GREEN VS Code $RESET$COLOR_GREEN...$RESET"
+      echo -e "\t${COLOR_GREEN}Force killing $RESET$BG_GREEN VS Code $RESET$COLOR_GREEN...$RESET "
       pkill -9 -f "code"
     fi
   else

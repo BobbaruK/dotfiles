@@ -2,7 +2,7 @@
 
 install_papirus_icon_theme() {
   if ! command -v papirus-icon-theme >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED papirus-icon-theme $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED papirus-icon-theme $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED papirus-icon-theme $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED papirus-icon-theme $RESET${COLOR_RED} ... $RESET\n"
 
     sudo apt install -y papirus-icon-theme
     

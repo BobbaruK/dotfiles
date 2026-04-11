@@ -2,7 +2,7 @@
 
 install_rofi() {
   if ! command -v rofi >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED rofi $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED rofi $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED rofi $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED rofi $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y rofi
     

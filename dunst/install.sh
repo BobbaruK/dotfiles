@@ -2,7 +2,7 @@
 
 install_dunst() {
   if ! command -v dunst >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED dunst $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED dunst $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED dunst $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED dunst $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y dunst
     

@@ -2,7 +2,7 @@
 
 install_i3status() {
   if ! command -v i3status >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED i3status $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED i3status $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED i3status $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED i3status $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y i3status
     

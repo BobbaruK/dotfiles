@@ -2,7 +2,7 @@
 
 install_alacritty() {
   if ! command -v alacritty >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED alacritty $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED alacritty $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED alacritty $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED alacritty $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y alacritty
     ``

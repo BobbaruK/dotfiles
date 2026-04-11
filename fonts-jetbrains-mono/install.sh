@@ -2,7 +2,7 @@
 
 install_fonts_jetbrains_mono() {
   if ! command -v fonts-jetbrains-mono >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED fonts-jetbrains-mono $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED fonts-jetbrains-mono $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED fonts-jetbrains-mono $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED fonts-jetbrains-mono $RESET${COLOR_RED} ... $RESET\n"
 
     sudo apt install -y fonts-jetbrains-mono
     

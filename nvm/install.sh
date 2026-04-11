@@ -2,7 +2,7 @@
 
 install_nvm() {
   if [ ! -d "$HOME/.nvm" ]; then
-    echo -e "\n	$BG_RED nvm $RESET ${COLOR_RED}not found. Installing...$RESET\n"
+    echo -e "\n	$BG_RED nvm $RESET ${COLOR_RED}not found. Installing...$RESET \n"
 
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
@@ -17,7 +17,7 @@ install_node() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
   if ! command -v node >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED node $RESET ${COLOR_RED}not found. Installing via nvm...$RESET\n"
+    echo -e "\n	$BG_RED node $RESET ${COLOR_RED}not found. Installing via nvm...$RESET \n"
 
     nvm install --lts
     nvm alias default 'lts/*'

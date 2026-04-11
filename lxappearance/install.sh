@@ -2,7 +2,7 @@
 
 install_lxappearance() {
   if ! command -v lxappearance >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED lxappearance $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED lxappearance $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED lxappearance $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED lxappearance $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y lxappearance
     

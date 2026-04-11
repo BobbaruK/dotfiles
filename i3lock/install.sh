@@ -2,7 +2,7 @@
 
 install_i3lock() {
   if ! command -v i3lock >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED i3lock $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED i3lock $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED i3lock $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED i3lock $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y i3lock
     
@@ -11,7 +11,9 @@ install_i3lock() {
     echo -e "\n	$BG_GREEN i3lock $RESET ${COLOR_GREEN}already installed$RESET\n"
   fi
 
-  # link_file "i3/.config/i3lock/config" ".config/i3lock/config"
+  # link_file "i3lock/.config/i3/scripts/lock.sh" ".config/i3/scripts/lock.sh"
+
+  # chmod +x ~/.config/i3/scripts/lock.sh
 }
 
 uninstall_i3lock() {
