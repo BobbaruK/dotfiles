@@ -2,7 +2,7 @@
 
 install_polybar() {
   if ! command -v polybar >/dev/null 2>&1; then
-    echo -e "\n	$BG_RED polybar $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED polybar $RESET${COLOR_RED} ...$RESET\n"
+    echo -e "\n	$BG_RED polybar $RESET ${COLOR_RED}not found. Installing $RESET$BG_RED polybar $RESET${COLOR_RED} ...$RESET \n"
 
     sudo apt install -y polybar
 
@@ -19,6 +19,10 @@ install_polybar() {
   fi
 
   link_file "polybar/.config/polybar/config.ini" ".config/polybar/config.ini"
+  link_file "polybar/SymbolsNerdFont-Regular.ttf" ".fonts/SymbolsNerdFont-Regular.ttf"
+  link_file "polybar/SymbolsNerdFontMono-Regular.ttf" ".fonts/SymbolsNerdFontMono-Regular.ttf"
+
+  fc-cache -fv
 }
 
 uninstall_polybar() {
